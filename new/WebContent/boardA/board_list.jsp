@@ -17,8 +17,10 @@
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>조회</title>
+	
+	<link rel="stylesheet" href="../css/st.css" type="text/css" media="screen"/>
 
-	<link rel="stylesheet" href="board.css" type="text/css" media="screen" />
+	
 
 	<script type="text/javascript">
 		function retrivalcheck() {
@@ -53,11 +55,37 @@
 </head>
 
 <jsp:useBean id="boardList" scope="request" class="java.util.ArrayList" />
+<!-- ========== 네비게이션  ========== -->
+
+<nav>
+
+	<div class="container nav-container">
+
+	   	<ul class="navbar">
+
+		    <li><a href="sub1.html">국내 와인</a></li>
+
+			<li><a href="sub2.html">해외 와인</a></li>
+
+
+	    </ul>
+
+	</div>
+
+</nav>
+
+
+<!-- ========== 소개화면 ========== -->
+
+<div class="home-keyvisual">	
+
+	<img src="../img/mainc.jpg" class="img-responsive">  
+
+</div>
 
 
 <body>
 	<div align=center>
-	<H2>자유게시판</H2><br>
 
 
 	<form name="form1" method="post" action="board_control.jsp">
@@ -98,5 +126,26 @@
 		</form>
 	</div>
 </body>
+<!-- ========== 푸터 ========== -->
+
+<footer>
+
+
+  <div class="container footer-container">
+
+	<p class="footer-copyright">
+
+		copyright jei@jeineungmail.com
+
+		</p>
+
+	</div>
+
+
+</footer>
+
+</body>
+
+</html>
 
 </html>
