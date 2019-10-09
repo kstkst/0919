@@ -101,6 +101,21 @@
 				<th>작성일</th>
 			</tr>
 			<%
+			
+			/**
+			*
+			* @fn 		for( : )
+			* 
+			* @brief 	list
+			*
+			* @author 	김성택
+			* @date 	2019-10-09
+			*
+			* @param 	boardDTO
+			*
+			* @remark	값을하나씩 꺼내와서 출력해줌 [2019-10-09; 김성택] \n
+			*
+			*/
 				if(boardList != null) {
 				
 
