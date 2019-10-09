@@ -19,8 +19,24 @@
  
 <jsp:useBean id="boardDAO" class="boardA.BoardDAO" scope="request" ></jsp:useBean>
 
+	
  
 <%
+
+	/**
+	*
+	* @fn 		action.equals()
+	* 
+	* @brief 	control
+	*
+	* @author 	김성택
+	* @date 	2019-10-09
+	*
+	* @param 	action
+	*
+	* @remark	값에따라 메소드를 다르게작용 [2019-10-09; 김성택] \n
+	*
+	*/
 
 
 	String action = request.getParameter("action");
