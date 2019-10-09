@@ -17,6 +17,20 @@ public class BoardDAO {
 	String jdbc_url = "jdbc:mysql://127.0.0.1/jspdb?useSSL=true&verifyServerCertificate=false&serverTimezone=UTC";
 	
 
+	/**
+	 *
+	 * @fn 		connect()
+	 * 
+	 * @brief 	dao
+	 *
+	 * @author 	김성택
+	 * @date 	2019-10-09
+	 *
+	 *
+	 * @remark	데이터베이스연결	[2019-10-09; 김성택] \n
+	 *
+	 */
+	
 	void connect() {
 		try {
 			Class.forName(jdbc_driver);
@@ -27,7 +41,19 @@ public class BoardDAO {
 		}
 	}
 
-	
+	/**
+	 *
+	 * @fn 		disconnect()
+	 * 
+	 * @brief 	dao
+	 *
+	 * @author 	김성택
+	 * @date 	2019-10-09
+	 *
+	 *
+	 * @remark	데이터베이스해제	[2019-10-09; 김성택] \n
+	 *
+	 */	
 
 	void disconnect() {
 		if(pstmt != null) {
