@@ -72,7 +72,21 @@ public class BoardDAO {
 		}
 	}
 
-
+	/**
+	 *
+	 * @fn 		insertDB()
+	 * 
+	 * @brief 	dao
+	 *
+	 * @author 	김성택
+	 * @date 	2019-10-09
+	 *
+	 * @param 	boardDTO
+	 *
+	 * @remark	데이터베이스에 정보입력	[2019-10-09; 김성택] \n
+	 *
+	 */	
+	
 	public boolean insertDB(BoardDTO boardDTO) {
 		
 		
@@ -103,7 +117,6 @@ public class BoardDAO {
 		}
 		return true;
 	}
-	
 	
 
 	public ArrayList<BoardDTO> getDBList() {
@@ -146,7 +159,21 @@ public class BoardDAO {
 		return boardList;
 	}
 
-
+	/**
+	 *
+	 * @fn 		getDB()
+	 * 
+	 * @brief 	dao
+	 *
+	 * @author 	김성택
+	 * @date 	2019-10-09
+	 *
+	 * @param 	id
+	 *
+	 * @remark	단일정보조회 메소드 [2019-10-09; 김성택] \n
+	 *
+	 */
+	
 	public BoardDTO getDB(int id) {
 		
 		connect();
@@ -186,6 +213,21 @@ public class BoardDAO {
 		return boardDTO;
 	}
 
+	/**
+	 *
+	 * @fn 		getDB()
+	 * 
+	 * @brief 	dao
+	 *
+	 * @author 	김성택
+	 * @date 	2019-10-09
+	 *
+	 * @param 	id
+	 *
+	 * @remark	수정화면조회 메소드 [2019-10-09; 김성택] \n
+	 *
+	 */
+	
 	public BoardDTO getRead(int id) {
 		
 		connect();
@@ -225,6 +267,21 @@ public class BoardDAO {
 		return boardDTO;
 	}
 
+	/**
+	 *
+	 * @fn 		updateDB()
+	 * 
+	 * @brief 	dao
+	 *
+	 * @author 	김성택
+	 * @date 	2019-10-09
+	 *
+	 * @param 	boardDTO
+	 *
+	 * @remark	정보수정메소드 [2019-10-09; 김성택] \n
+	 *
+	 */
+	
 	public boolean updateDB(BoardDTO boardDTO) {
 		
 		
@@ -254,7 +311,20 @@ public class BoardDAO {
 		return true;
 	}
 	
-	
+	/**
+	 *
+	 * @fn 		deleteDB()
+	 * 
+	 * @brief 	dao
+	 *
+	 * @author 	김성택
+	 * @date 	2019-10-09
+	 *
+	 * @param 	id
+	 *
+	 * @remark	정보삭제메소드 [2019-10-09; 김성택] \n
+	 *
+	 */
 
 	public boolean deleteDB(int id) {
 		
