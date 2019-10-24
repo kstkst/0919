@@ -111,7 +111,7 @@
 
 				</li>
 			
-						<li><a href="logoutAction.jsp">로그아웃</a></li>
+						<li><a href="../logoutAction.jsp">로그아웃</a></li>
 				</ul>
 
 			<%
@@ -185,9 +185,24 @@
 			<tr>
 				<td colspan=4 align=right>
     				<input type="button" value="조회" onClick="retrivalcheck()">
-    				<input type="button" value="글작성" onClick="add()">
+    				<!-- 회원만넘어가도록 -->
+			<%
+			//if logined userID라는 변수에 해당 아이디가 담기고 if not null
+			if (session.getAttribute("userID") != null) {
+%>
+			
+    				<input type="button" value="글작성" onClick="add()" class="btn btn-primary pull-right"></a>
+<%
+			} else {
+%>
+			<button class="btn btn-primary pull-right" onclick="if(confirm('로그인 하세요'))location.href='../login.jsp';" type="button" >글쓰기</button>
+<%
+			}
+%>		
 				</td>
-			</tr>
+			</tr>	
+			
+
 			</table>
 		</form>
 	</div>
