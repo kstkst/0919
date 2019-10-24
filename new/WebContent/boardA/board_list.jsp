@@ -61,7 +61,7 @@
 
 	   	<ul class="navbar">
 
-		    <li><a href="../index.html">메인으로 이동</a></li>
+		    <li><a href="../index.jsp">메인으로 이동</a></li>
 		    <li></li>
 		    <li></li>
 		    <li></li>
