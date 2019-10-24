@@ -19,10 +19,14 @@
 	<nav>
 
 	<div class="container nav-container">
-
+<%
+		//라긴안된경우
+	if (userID == null) {
+	%>
+	
 	   	<ul class="navbar">
 
-		    <li><a href="index.html">메인으로 이동</a></li>
+		    <li><a href="index.jsp">메인으로 이동</a></li>
 		    <li></li>
 		    <li></li>
 		    <li></li>
@@ -33,12 +37,34 @@
 		    <li></li>
 		    <li></li>
 
-			<li align="right"><a href="sub1.html">회원 가입</a></li>
+			<li align="right"><a href="join.jsp">회원 가입</a></li>
 			
-			<li align="right"><a href="sub2.html">로그인</a></li>
+			<li align="right"><a href="login.jsp">로그인</a></li>
 
 
 	    </ul>
+<%
+
+				} else {
+
+			%>
+
+			<ul class="navbar">
+
+				<li><a href="#" 
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">회원관리<span class="caret"></span></a>
+
+				</li>
+			
+						<li><a href="logoutAction.jsp">로그아웃</a></li>
+				</ul>
+
+			<%
+
+				}
+
+			%>
 
 	</div>
 

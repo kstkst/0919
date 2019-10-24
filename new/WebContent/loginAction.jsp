@@ -47,17 +47,16 @@
 		//로그인 성공
 
 		if(result == 1){
-			
-			session.setAttribute("userID", user.getUserID()); 
-			
-			PrintWriter script = response.getWriter();
 
+			PrintWriter script = response.getWriter();
+						
 			script.println("<script>");
 
-			script.println("<location.href = 'index.html'");
+			response.sendRedirect("index.jsp");
 
 			script.println("</script>");
-
+			
+			session.setAttribute("userID", user.getUserID()); 
 		}
 
 		//로그인 실패
@@ -113,8 +112,6 @@
 	%>
 
 
-
-</body>
 
 </body>
 

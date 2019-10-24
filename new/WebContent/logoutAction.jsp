@@ -28,7 +28,7 @@
 
 	<script>	//메인으로 이동
 
-		location.href = 'index.html';
+		location.href = 'index.jsp';
 
 	</script>
 

@@ -50,6 +50,21 @@
 		}
 	</script>
 
+	<%
+
+		//로긴한사람이라면	 userID라는 변수에 해당 아이디가 담기고 그렇지 않으면 null값
+
+		String userID = null;
+
+		if (session.getAttribute("userID") != null) {
+
+			userID = (String) session.getAttribute("userID");
+
+
+
+		}
+
+	%>
 </head>
 
 <jsp:useBean id="boardList" scope="request" class="java.util.ArrayList" />
@@ -58,6 +73,10 @@
 <nav>
 
 	<div class="container nav-container">
+<%
+		//라긴안된경우
+	if (userID == null) {
+	%>
 
 	   	<ul class="navbar">
 
@@ -72,12 +91,34 @@
 		    <li></li>
 		    <li></li>
 
-			<li align="right"><a href="sub1.html">회원 가입</a></li>
+			<li align="right"><a href="../join.jsp">회원 가입</a></li>
 			
-			<li align="right"><a href="sub2.html">로그인</a></li>
+			<li align="right"><a href="../login.jsp">로그인</a></li>
 
 
 	    </ul>
+<%
+
+				} else {
+
+			%>
+
+			<ul class="navbar">
+
+				<li><a href="#" 
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">회원관리<span class="caret"></span></a>
+
+				</li>
+			
+						<li><a href="logoutAction.jsp">로그아웃</a></li>
+				</ul>
+
+			<%
+
+				}
+
+			%>
 
 	</div>
 
@@ -94,6 +135,7 @@
 
 
 <body>
+
 	<div align=center>
 
 

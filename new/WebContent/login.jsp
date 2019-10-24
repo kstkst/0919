@@ -44,7 +44,7 @@
 
     </button>
 
-    <a class="navbar-brand" href="index.html">메인으로 가기</a>
+    <a class="navbar-brand" href="index.jsp">메인으로 가기</a>
 
   </div>
 
