@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
 <%@ page errorPage="board_error.jsp" %>
 
-
-<%@ page import= "boardA.*" %>
+<%@ page import = "boardA.*" %>
 <%@ page import = "java.util.ArrayList" %>
 
 <!DOCTYPE html>
@@ -63,9 +61,20 @@
 
 	   	<ul class="navbar">
 
-		    <li><a href="sub1.html">국내 와인</a></li>
+		    <li><a href="../index.html">메인으로 이동</a></li>
+		    <li></li>
+		    <li></li>
+		    <li></li>
+		    <li></li>
+		    <li></li>
+		    <li></li>
+		    <li></li>
+		    <li></li>
+		    <li></li>
 
-			<li><a href="sub2.html">해외 와인</a></li>
+			<li align="right"><a href="sub1.html">회원 가입</a></li>
+			
+			<li align="right"><a href="sub2.html">로그인</a></li>
 
 
 	    </ul>

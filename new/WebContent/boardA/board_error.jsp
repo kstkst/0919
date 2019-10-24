@@ -6,18 +6,18 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>계좌이체</title>
+	<title>게시글 작성</title>
 	<link rel="stylesheet" href="board.css" type="text/css" media="screen" />
 </head>
 
 <body>
 	<div align="center">
-	<H2>계좌이체 오류</H2>
+	<H2>게시글 작성 오류</H2>
 	<HR>
 	<table>
 		<tr>
 			<td>
-				계좌이체 처리중 에러가 발생 했습니다.<BR>
+				게시물 작성 중 에러가 발생 했습니다.<BR>
 				관리자에게 문의해 주세요..<BR>
 				빠른시일내 복구하겠습니다.<BR>
 				<HR>
