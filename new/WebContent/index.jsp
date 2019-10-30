@@ -20,7 +20,7 @@
 
 	<div class="container nav-container">
 <%
-		//라긴안된경우
+		//로그인안된경우
 	if (userID == null) {
 	%>
 	

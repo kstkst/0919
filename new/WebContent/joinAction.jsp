@@ -45,8 +45,21 @@
 <body>
 
 	<%
-
-			//라긴된 회원들은 페이지에 접속 할 수 없도록
+	
+	/**
+	 *
+	 * @fn 		joinAction()
+	 * 
+	 * @brief 	Action
+	 *
+	 * @author 	윤상혁
+	 * @date 	2019-10-30
+	 *
+	 * @remark	회원가입 실행 폼	[2019-10-09; 윤상혁] \n
+	 *
+	 */	
+	 
+			//로그인된 회원들은 페이지에 접속 할 수 없도록
 
 			String userID = null;
 
