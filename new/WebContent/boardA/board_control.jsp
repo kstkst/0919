@@ -20,7 +20,7 @@
 <jsp:useBean id="boardDAO" class="boardA.BoardDAO" scope="request" ></jsp:useBean>
 
 	
- 
+
 <%
 
 	/**

@@ -14,7 +14,7 @@ public class BoardDAO {
 
 	String jdbc_driver = "com.mysql.jdbc.Driver";
 	
-	String jdbc_url = "jdbc:mysql://127.0.0.1/jspdb?useSSL=true&verifyServerCertificate=false&serverTimezone=UTC";
+	String jdbc_url = "jdbc:mysql://127.0.0.1/winedb?useSSL=true&verifyServerCertificate=false&serverTimezone=UTC";
 	
 
 	/**
@@ -35,7 +35,7 @@ public class BoardDAO {
 		try {
 			Class.forName(jdbc_driver);
 
-			conn = DriverManager.getConnection(jdbc_url,"jspbook","1234");
+			conn = DriverManager.getConnection(jdbc_url,"wine","1234");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

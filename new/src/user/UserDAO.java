@@ -34,9 +34,9 @@ public class UserDAO {
 
 		try {
 
-			String dbURL = "jdbc:mysql://127.0.0.1/jspdb?useSSL=true&verifyServerCertificate=false&serverTimezone=UTC"; // localhost:3306 포트는 컴퓨터설치된 mysql주소
+			String dbURL = "jdbc:mysql://127.0.0.1/winedb?useSSL=true&verifyServerCertificate=false&serverTimezone=UTC"; // localhost:3306 포트는 컴퓨터설치된 mysql주소
 
-			String dbID = "jspbook";
+			String dbID = "wine";
 
 			String dbPassword = "1234";
 
