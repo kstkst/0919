@@ -16,6 +16,20 @@ public class User {
 
 	private String userEmail;
 
+	/**
+	 *
+	 * @fn 		get, set()
+	 * 
+	 * @brief 	DTO
+	 *
+	 * @author 	윤상혁
+	 * @date 	2019-10-30
+	 *
+	 *
+	 * @remark	데이터를 다른 페이지에서 받거나 넘길 수 있도록 getter, setter 함수 생성	[2019-10-30; 윤상혁] \n
+	 *
+	 */
+	
 	public String getUserID() {
 
 		return userID;
