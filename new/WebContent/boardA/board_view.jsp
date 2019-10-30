@@ -11,7 +11,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>등록</title>
-	<link rel="stylesheet" href="board.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../css/board.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../css/st.css" type="text/css" media="screen"/>
 
 	<script type="text/javascript">
 

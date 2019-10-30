@@ -7,7 +7,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>게시글 작성</title>
-	<link rel="stylesheet" href="board.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../css/board.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../css/st.css" type="text/css" media="screen"/>
 </head>
 
 <body>
