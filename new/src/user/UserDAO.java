@@ -18,15 +18,27 @@ public class UserDAO {
 
 	// 실질적으로 db에서 회원정보 불러오거나 db에 회원정보 넣을때
 
+	
 
-
-	private Connection conn; // connection:db에접근하게 해주는 객체
+	private Connection conn; // connection:db에 접근하게 해주는 객체
 
 	private PreparedStatement pstmt;
 
 	private ResultSet rs;
 
-
+	/**
+	 *
+	 * @fn 		connect()
+	 * 
+	 * @brief 	DAO
+	 *
+	 * @author 	윤상혁
+	 * @date 	2019-10-30
+	 *
+	 *
+	 * @remark	DB 연결	[2019-10-09; 윤상혁] \n
+	 *
+	 */
 
 	// mysql에 접속해 주는 부분
 
@@ -52,7 +64,19 @@ public class UserDAO {
 
 	}
 
-
+	/**
+	 *
+	 * @fn 		login()
+	 * 
+	 * @brief 	DAO
+	 *
+	 * @author 	윤상혁
+	 * @date 	2019-10-30
+	 *
+	 *
+	 * @remark	로그인 시도 & 연동된 DB에서 정보 가져옴 [2019-10-09; 윤상혁] \n
+	 *
+	 */
 
 	// 로그인을 시도하는 함수****
 
@@ -105,7 +129,21 @@ public class UserDAO {
 		return -2; // 데이터베이스 오류를 의미
 
 	}
-
+	
+	/**
+	 *
+	 * @fn 		join()
+	 * 
+	 * @brief 	DAO
+	 *
+	 * @author 	윤상혁
+	 * @date 	2019-10-30
+	 *
+	 *
+	 * @remark	회원가입 시도 & DB에서 데이터 가져옴. [2019-10-09; 윤상혁] \n
+	 *
+	 */
+	
 	public int join(User user) {
 
 		String SQL = "INSERT INTO USER VALUES (?,?,?,?,?)";
