@@ -38,6 +38,20 @@
 
 	<%
 
+	/**
+	 *
+	 * @fn 		loginAction()
+	 * 
+	 * @brief 	Action
+	 *
+	 * @author 	윤상혁
+	 * @date 	2019-10-30
+	 *
+	 * @remark	로그인 실행 폼	[2019-10-30; 윤상혁] \n
+	 *
+	 */	
+	 
+	
 		UserDAO userDAO = new UserDAO(); //인스턴스생성
 
 		int result = userDAO.login(user.getUserID(), user.getUserPassword());

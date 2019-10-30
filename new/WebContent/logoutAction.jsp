@@ -20,6 +20,20 @@
 
 	<%
 
+	/**
+	 *
+	 * @fn 		logoutAction()
+	 * 
+	 * @brief 	Action
+	 *
+	 * @author 	윤상혁
+	 * @date 	2019-10-30
+	 *
+	 * @remark	로그아웃 실행 폼	[2019-10-30; 윤상혁] \n
+	 *
+	 */	
+	 
+	
 		session.invalidate(); // 접속한 회원의 세션을 빼앗음
 
 	%>
