@@ -16,8 +16,8 @@ public class BbsDAO {
     // mysql�뿉 �젒�냽�빐 二쇰뒗 遺�遺�
     public BbsDAO() { // �깮�꽦�옄 �떎�뻾�맆�븣留덈떎 �옄�룞�쑝濡� db�뿰寃곗씠 �씠猷⑥뼱 吏� �닔 �엳�룄濡앺븿
        try {
-          String dbURL = "jdbc:mysql://localhost:3306/BBS?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"; // localhost:3306 �룷�듃�뒗 而댄벂�꽣�꽕移섎맂 mysql二쇱냼
-          String dbID = "snowwhite";
+          String dbURL = "jdbc:mysql://localhost:3306/winedb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"; // localhost:3306 �룷�듃�뒗 而댄벂�꽣�꽕移섎맂 mysql二쇱냼
+          String dbID = "wine";
           String dbPassword = "1234";
           Class.forName("com.mysql.cj.jdbc.Driver");
           conn = DriverManager.getConnection(dbURL, dbID, dbPassword);

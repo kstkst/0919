@@ -12,6 +12,10 @@ CREATE TABLE BBS (
 
     bbsAvailable INT,
 
+	category varchar(10),
+
+	groupId int,
+     
     PRIMARY KEY (bbsID)
 
     ) DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
