@@ -65,7 +65,7 @@
 						else{
 							PrintWriter script = response.getWriter();
 							script.println("<script>");
-							script.println("location.href = 'bbs.jsp'");
+							script.println("location.href = 'board_list.jsp'");
 							script.println("</script>");
 						}
 					}		

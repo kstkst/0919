@@ -6,6 +6,11 @@
 <%@ page import = "boardA.*" %>
 <%@ page import = "java.util.ArrayList" %>
 
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="bbs.BbsDAO" %>
+<%@ page import="bbs.Bbs" %>
+<%@ page import="java.util.ArrayList" %>
+
 <!DOCTYPE html>
 
 
@@ -16,7 +21,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>조회</title>
 	
-	<link rel="stylesheet" href="../css/st.css" type="text/css" media="screen"/>
+	<link rel="stylesheet" href="css/st.css" type="text/css" media="screen"/>
 
 	
 
@@ -54,17 +59,26 @@
 
 		//로긴한사람이라면	 userID라는 변수에 해당 아이디가 담기고 그렇지 않으면 null값
 
-		String userID = null;
-
-		if (session.getAttribute("userID") != null) {
-
-			userID = (String) session.getAttribute("userID");
-
-
-
-		}
+		String userID =null;
+	if (session.getAttribute("userID") != null){
+		userID = (String) session.getAttribute("userID");
+	}
+	int pageNumber = 1;
+	if (request.getParameter("pageNumber") != null){
+		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+	}
 
 	%>
+	<!-- 뷰포트 -->
+	<meta name="viewport" content="width=device-width" initial-scale="1">
+	<!-- 스타일시트 참조  -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<style type="text/css">
+	a, a:hover{
+	color : #000000;
+	text-decoration : none;
+	}
+</style>
 </head>
 
 <jsp:useBean id="boardList" scope="request" class="java.util.ArrayList" />
@@ -80,7 +94,7 @@
 
 	   	<ul class="navbar">
 
-		    <li><a href="../index.jsp">메인으로 이동</a></li>
+		    <li><a href="index.jsp">메인으로 이동</a></li>
 		    <li></li>
 		    <li></li>
 		    <li></li>
@@ -91,9 +105,9 @@
 		    <li></li>
 		    <li></li>
 
-			<li align="right"><a href="../join.jsp">회원 가입</a></li>
+			<li align="right"><a href="join.jsp">회원 가입</a></li>
 			
-			<li align="right"><a href="../login.jsp">로그인</a></li>
+			<li align="right"><a href="login.jsp">로그인</a></li>
 
 
 	    </ul>
@@ -129,7 +143,7 @@
 
 <div class="home-keyvisual">	
 
-	<img src="../img/mainc.jpg" class="img-responsive">  
+	<img src="img/mainc.jpg" class="img-responsive">  
 
 </div>
 
@@ -139,72 +153,53 @@
 	<div align=center>
 
 
-	<form name="form1" method="post" action="board_control.jsp">
-		<input type="hidden" name="action" value="list">
-		<input type="hidden" name="id" value=0>
-	
-		<table class="bbsListTbl">
-		
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-			</tr>
-			<%
-			
-			/**
-			*
-			* @fn 		for( : )
-			* 
-			* @brief 	list
-			*
-			* @author 	김성택
-			* @date 	2019-10-09
-			*
-			* @param 	boardDTO
-			*
-			* @remark	값을하나씩 꺼내와서 출력해줌 [2019-10-09; 김성택] \n
-			*
-			*/
-				if(boardList != null) {
-				
-
-					for(BoardDTO boardDTO : (ArrayList<BoardDTO>) boardList) {
+	<div class="container">
+ 		<div clas="row">
+ 			<table class = "table table-striped" style="text-align: center; border : 1px solid #dddddd">
+ 				<thead>
+ 					<tr>
+ 						<th width = "10%" style = "background-color :#eeeeee; text-align: center;">번호</th>
+ 						<th width = "50%" style = "background-color :#eeeeee; text-align: center;">제목</th>
+ 						<th width = "20%" style = "background-color :#eeeeee; text-align: center;">작성자</th>
+ 						<th width = "30%" style = "background-color :#eeeeee; text-align: center;">작성일</th>
+ 					</tr>
+ 				</thead>
+ 				<tbody>
+ 				<%
+ 					BbsDAO bbsDAO = new BbsDAO();
+ 					ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
+ 					for(int i=0; i < list.size(); i++){
+ 				%>	
+ 					<tr>
+ 						<td><%= list.get(i).getBbsID() %></td>
+ 						<td><a href="view.jsp?bbsID=<%= list.get(i).getBbsID()%>"><%= list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></a></td>
+ 						<td><%= list.get(i).getUserID() %></td>
+ 						<td><%= list.get(i).getBbsDate().substring(0, 11) + list.get(i).getBbsDate().substring(11, 13) +  "시" + list.get(i).getBbsDate().substring(14, 16) + "분"%></td>
+ 					</tr>
+ 				<% 					
+ 					}
+ 				%>
+ 				</tbody>
+ 			</table>
+ 			<%
+ 				if(pageNumber != 1){
 			%>
-						<tr>
-							<td class="tit_notice"><%=boardDTO.getId() %></td>
-							<td class="tit_notice"><a href="javascript:readcheck(<%=boardDTO.getId() %>)"><%=boardDTO.getTitle() %></a></td>
-							<td class="tit_notice"><%=boardDTO.getUser() %></td>
-							<td class="tit_notice"><%=boardDTO.getDate() %></td>
-						</tr>
-			<%	
-					}
-				}
-			%>
-			<tr>
-				<td colspan=4 align=right>
-    				<input type="button" value="조회" onClick="retrivalcheck()">
-    				<!-- 회원만넘어가도록 -->
-			<%
-			//if logined userID라는 변수에 해당 아이디가 담기고 if not null
-			if (session.getAttribute("userID") != null) {
-%>
-			
-    				<input type="button" value="글작성" onClick="add()" class="btn btn-primary pull-right"></a>
-<%
-			} else {
-%>
-			<button class="btn btn-primary pull-right" onclick="if(confirm('로그인 하세요'))location.href='../login.jsp';" type="button" >글쓰기</button>
-<%
-			}
-%>		
-				</td>
-			</tr>	
-			
+			 	<a href="bbs.jsp?pageNumber=<%=pageNumber - 1%>"class="btn btn-success btn-arraw-left">이전</a>
+			<%				
+ 				} if(bbsDAO.nextPage(pageNumber + 1)){
+ 			%>
+ 				 <a href="bbs.jsp?pageNumber=<%=pageNumber + 1%>"class="btn btn-success btn-arraw-left">다음</a>
+ 			<%	 					
+ 				}
+ 			%>
+ 			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
+ 		</div>
+ 	</div>
+ <!-- 애니매이션 담당 JQUERY -->
+ <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
+ <!-- 부트스트랩 JS  -->
+ <script src="js/bootstrap.js"></script>
 
-			</table>
-		</form>
 	</div>
 </body>
 <!-- ========== 푸터 ========== -->
