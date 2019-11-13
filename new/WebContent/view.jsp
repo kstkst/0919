@@ -106,7 +106,7 @@
  				</tbody>
  			</table>
  			
- 			<a href="bbs.jsp" class="btn btn-primary">목록</a>
+ 			<a href="board_list.jsp" class="btn btn-primary">목록</a>
  			<%
  				if(userID != null && userID.equals(bbs.getUserID())){
  			%>
