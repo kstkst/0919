@@ -50,6 +50,11 @@
 			%>
 
 			<ul class="navbar">
+			
+				<li>
+				<a href="index.jsp">홈</a>
+				</li>
+			
 
 				<li><a href="#" 
 					data-toggle="dropdown" role="button" aria-haspopup="true"
