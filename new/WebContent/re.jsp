@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import = "bbs.*" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,15 +11,32 @@
 <meta name="viewport" content="width=device-width" initial-scale="1">
 <!-- 스타일시트 참조  -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<title>SNOW WHITE</title>
+<title>와인</title>
 </head>
 <body>
 <%
-	String userID =null;
-	if (session.getAttribute("userID") != null){
-		userID = (String) session.getAttribute("userID");
-	}
-%>
+
+		//로긴한사람이라면	 userID라는 변수에 해당 아이디가 담기고 그렇지 않으면 null값
+
+		String userID =null;
+		if (session.getAttribute("userID") != null){
+			userID = (String) session.getAttribute("userID");
+		}
+		
+		int bbsID = 0;
+		if (request.getParameter("bbsID") != null) {
+			bbsID =Integer.parseInt(request.getParameter("bbsID"));
+		}
+		if (bbsID == 0){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('유효하지 않은 글입니다.')");
+			script.println("location.href = 'bbs.jsp'");
+			script.println("</script>");
+		}
+		Bbs bbs = new BbsDAO().getBbs(bbsID);
+
+	%>
  <!-- 네비게이션  -->
  <nav class="navbar navbar-default">
   <div class="navbar-header">
@@ -29,14 +47,9 @@
      <span class="icon-bar"></span>
      <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="main.jsp">SNOW WHITE</a>
+    <a class="navbar-brand" href="main.jsp">메인으로 가기</a>
   </div>
   <div class="collapse navbar-collapse" id="#bs-example-navbar-collapse-1">
-   <ul class="nav navbar-nav">
-    <li><a href="main.jsp">메인</a></li>
-    <li class="active"><a href="bbs.jsp">게시판</a></li>
-	<li><a href="bbs.jsp">캘린더</a></li>
-   </ul>
     <%
     	if(userID == null){
     %>
@@ -69,12 +82,6 @@
     %>
     <%
 	// request 내장객체에서 boardDTO get하여 클래스 변수에 저장()
-	Bbs bbs = (Bbs)request.getAttribute("bbs");
-	
-	// edit가 아닌 add인 경우는 DTO 객체 생성
-	if(bbs == null) {
-		bbs = new Bbs();
-	}
 	
 	String groupId = request.getParameter("groupId");
 	System.out.println(groupId);
@@ -102,6 +109,9 @@
  					</tr>
  				</tbody>
  			</table>
+ 				
+ 			<a href="view.jsp?bbsID=<%=bbsID%>" class="btn btn-primary">목록</a>
+ 			
  			<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
  		</form>
  		</div>
