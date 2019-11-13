@@ -21,7 +21,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>조회</title>
 	
-	<link rel="stylesheet" href="css/st.css" type="text/css" media="screen"/>
+	<link rel="stylesheet" href="css/st.css">
 
 	
 
@@ -120,7 +120,7 @@
 			<ul class="navbar">
 			
 				<li>
-				<a href="index.jsp">홈</a>
+				<a href="index.jsp">메인으로 이동</a>
 				</li>
 
 				<li><a href="#" 

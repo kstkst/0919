@@ -52,7 +52,7 @@
 			<ul class="navbar">
 			
 				<li>
-				<a href="index.jsp">홈</a>
+				<a href="index.jsp">메인으로 이동</a>
 				</li>
 			
 
