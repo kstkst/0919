@@ -7,14 +7,15 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class BbsDAO {
-    // dao : �뜲�씠�꽣踰좎씠�뒪 �젒洹� 媛앹껜�쓽 �빟�옄濡쒖꽌
-    // �떎吏덉쟻�쑝濡� db�뿉�꽌 �쉶�썝�젙蹂� 遺덈윭�삤嫄곕굹 db�뿉 �쉶�썝�젙蹂� �꽔�쓣�븣
+	// dao : 데이터베이스 접근 객체의 약자로서
 
-    private Connection conn; // connection:db�뿉�젒洹쇳븯寃� �빐二쇰뒗 媛앹껜
+	// 실질적으로 db에서 회원정보 불러오거나 db에 회원정보 넣을때
+
+    private Connection conn; // connection:db에 접근하게 해주는 객체
     private ResultSet rs;
 
-    // mysql�뿉 �젒�냽�빐 二쇰뒗 遺�遺�
-    public BbsDAO() { // �깮�꽦�옄 �떎�뻾�맆�븣留덈떎 �옄�룞�쑝濡� db�뿰寃곗씠 �씠猷⑥뼱 吏� �닔 �엳�룄濡앺븿
+    // mysql에 접속해 주는 부분
+    public BbsDAO() { // 생성자 실행될때마다 자동으로 db연결이 이루어 질 수 있도록함
        try {
           String dbURL = "jdbc:mysql://localhost:3306/winedb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"; // localhost:3306 �룷�듃�뒗 而댄벂�꽣�꽕移섎맂 mysql二쇱냼
           String dbID = "wine";
@@ -22,7 +23,7 @@ public class BbsDAO {
           Class.forName("com.mysql.cj.jdbc.Driver");
           conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
        } catch (Exception e) {
-          e.printStackTrace(); // �삤瑜섍� 臾댁뾿�씤吏� 異쒕젰
+          e.printStackTrace(); // 오류가 무엇인지 출력
        }
     }
     
@@ -37,7 +38,7 @@ public class BbsDAO {
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
-    	return ""; //db �삤瑜�
+    	return ""; // DB 오류
     }
     
     public int getNext() {
@@ -48,11 +49,11 @@ public class BbsDAO {
     		if (rs.next()) {
     			return rs.getInt(1) + 1;
     		}
-    		return 1; //泥ル쾲吏� 寃뚯떆臾쇱씤 寃쎌슦
+    		return 1; 
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
-    	return -1; //db�삤瑜�
+    	return -1; // DB 오류
     }
     
     public int write(String bbsTitle, String userID, String bbsContent, String category, int groupId) {
@@ -71,7 +72,7 @@ public class BbsDAO {
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
-    	return -1; //db�삤瑜�
+    	return -1; // DB 오류
     }
     
     public ArrayList<Bbs> getList(int pageNumber){
@@ -96,7 +97,7 @@ public class BbsDAO {
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
-    	return list; //db�삤瑜�
+    	return list; // DB 오류
     }
     
     public boolean nextPage(int pageNumber) {
@@ -111,7 +112,7 @@ public class BbsDAO {
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
-    	return false; //db�삤瑜�
+    	return false; // DB 오류
     }
     
     public Bbs getBbs(int bbsID) {
@@ -135,7 +136,7 @@ public class BbsDAO {
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
-    	return null; //db�삤瑜�
+    	return null; // DB 오류
     }
     
     public int update(int bbsID, String bbsTitle, String bbsContent) {
@@ -149,7 +150,7 @@ public class BbsDAO {
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
-    	return -1; //db�삤瑜�
+    	return -1; // DB 오류ㄴ
     }
     public int delete(int bbsID) {
     	String SQL = "UPDATE BBS SET bbsAvailable = 0 WHERE bbsID = ?";
@@ -160,7 +161,7 @@ public class BbsDAO {
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
-    	return -1; //db�삤瑜�
+    	return -1; // DB 오류
     }
     public int getNewGroupId() {
     	
@@ -171,11 +172,8 @@ public class BbsDAO {
     	try {
     		PreparedStatement pstmt = conn.prepareStatement(SQL);    
     		
-    		//SQL臾� �떎�뻾
     		rs = pstmt.executeQuery();
 
-    		
-    		// 寃뚯떆�뙋 湲��씠 1嫄� �엳�뒗 寃쎌슦
     		if(rs.next()) {
     			                           
     			newGroupId = rs.getInt("groupId") + 1;
