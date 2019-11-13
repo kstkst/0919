@@ -162,7 +162,7 @@
 
 			<ul>
 
-			<li><a href="boardA/board_list.jsp"> 게시판으로 이동 </a></li>
+			<li><a href="board_list.jsp"> 게시판으로 이동 </a></li>
 
 			</ul>
 				</div>
