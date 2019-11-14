@@ -50,6 +50,11 @@
 			%>
 
 			<ul class="navbar">
+			
+				<li>
+				<a href="index.jsp">메인으로 이동</a>
+				</li>
+			
 
 				<li><a href="#" 
 					data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -162,7 +167,7 @@
 
 			<ul>
 
-			<li><a href="boardA/board_list.jsp"> 게시판으로 이동 </a></li>
+			<li><a href="board_list.jsp"> 게시판으로 이동 </a></li>
 
 			</ul>
 				</div>

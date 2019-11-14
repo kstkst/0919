@@ -96,6 +96,12 @@ nav {
 		color: #fff;
 		text-decoration: none;
 	}
+	.navbar li a {
+		display: block;
+		padding: 1rem ;
+		color: #fff;
+		text-decoration: none;
+	}
 
 
 	.navbar {
@@ -104,6 +110,7 @@ nav {
 	.navbar li {
 		flex: auto;
 		text-align: center;
+		text-decoration: none;
 	}
 
 /*메인소개 */
@@ -177,9 +184,6 @@ main {
 	border-radius: 10px;
 	background: #fff;
 }
-
-
-
 
 /* ========== 푸터 ========== */
 footer {
