@@ -28,6 +28,7 @@
 			script.println("location.href = 'login.jsp'");
 			script.println("</script>");
 		} else {
+
 			if (bbs.getBbsTitle() == null || bbs.getBbsContent() == null) {
 						PrintWriter script = response.getWriter();
 						script.println("<script>");
@@ -36,7 +37,7 @@
 						script.println("</script>");
 					} else{
 						BbsDAO bbsDAO = new BbsDAO(); //인스턴스생성
-						
+			
 						String category = request.getParameter("category");
 						
 						if(category.equals("notice")) {
@@ -52,7 +53,7 @@
 					    	bbs.setGroupId(noticeGroupId);
 					      }
 					      
-						int result = bbsDAO.write(bbs.getBbsTitle(), userID, bbs.getBbsContent(), bbs.getCategory(), bbs.getGroupId());
+						int result = bbsDAO.boardWrite(bbs.getBbsTitle(), userID, bbs.getBbsContent(), bbs.getCategory(), bbs.getGroupId(),  bbs.getHit());
 						//회원가입실패
 						if(result == -1){
 							PrintWriter script = response.getWriter();
@@ -68,7 +69,8 @@
 							script.println("location.href = 'board_list.jsp'");
 							script.println("</script>");
 						}
-					}		
+					}
+			
 		}
 	%>
 </body>

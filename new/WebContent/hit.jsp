@@ -3,6 +3,7 @@
 <%@ page import="bbs.BbsDAO" %> <!-- userdao의 클래스 가져옴 -->
 <%@ page import="bbs.Bbs" %>
 <%@ page import="java.io.PrintWriter" %> <!-- 자바 클래스 사용 -->
+<jsp:useBean id="bbs" class="bbs.Bbs" scope="page" />
 <% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
 <html>
@@ -11,19 +12,7 @@
 <title>SNOW WHITE</title>
 </head>
 <body>
-	<%
-		String userID = null;
-		if(session.getAttribute("userID") != null){
-		userID = (String) session.getAttribute("userID");
-		}
-		if(userID == null){
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert(' 로그인을 하세요.')");
-			script.println("location.href = 'login.jsp'");
-			script.println("</script>");
-		} 
-		
+	<%		
 		int bbsID = 0;
 		if (request.getParameter("bbsID") != null) {
 			bbsID = Integer.parseInt(request.getParameter("bbsID"));
@@ -34,25 +23,10 @@
 			script.println("alert('유효하지 않은 글 입니다.')");
 			script.println("location.href = 'board_list.jsp'");
 			script.println("</script>");
-		}
-		Bbs bbs =new BbsDAO().getBbs(bbsID);
-		if (!userID.equals(bbs.getUserID())) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('권한이 없습니다.')");
-			script.println("location.href = 'board_list.jsp'");
-			script.println("</script>");
 		} else {
-			if (request.getParameter("bbsTitle") == null || request.getParameter("bbsContent") == null
-					||request.getParameter("bbsTitle").equals("") || request.getParameter("bbsContent").equals("")) {
-						PrintWriter script = response.getWriter();
-						script.println("<script>");
-						script.println("alert('입력이 되지 않은 사항이 있습니다.')");
-						script.println("history.back()");
-						script.println("</script>");
-					} else{
 						BbsDAO bbsDAO = new BbsDAO(); //인스턴스생성
-						int result = bbsDAO.boardUpdate(bbsID, request.getParameter("bbsTitle"), request.getParameter("bbsContent"));
+	 					int result = bbsDAO.hitUpdate(bbsID);
+						System.out.println(bbs.getHit());
 						//회원가입실패
 						if(result == -1){
 							PrintWriter script = response.getWriter();
@@ -69,7 +43,6 @@
 							script.println("</script>");
 						}
 					}		
-		}
 	%>
 </body>
 </body>

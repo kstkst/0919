@@ -31,7 +31,7 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다.')");
-			script.println("location.href = 'bbs.jsp'");
+			script.println("location.href = 'board_list.jsp'");
 			script.println("</script>");
 		}
 		Bbs bbs = new BbsDAO().getBbs(bbsID);
@@ -82,15 +82,15 @@
     %>
     <%
 	// request 내장객체에서 boardDTO get하여 클래스 변수에 저장()
-	
+	String action = request.getParameter("action");
 	String groupId = request.getParameter("groupId");
-	System.out.println(groupId);
 %>
   </div> 
  </nav>
  	<div class="container">
  		<div class="row">
  		<form method="post" action="writeAction.jsp">
+ 		<input type="hidden" name="action" value="<%= action %>">
  		<input type="hidden" name="category" value="reply">
  		<input type="hidden" name="groupId" value="<%= bbs.getGroupId() %>">
 		<input type="hidden" name="noticeGroupId" value="<%= groupId %>">

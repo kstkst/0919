@@ -27,7 +27,7 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('유효하지 않은 글입니다.')");
-		script.println("location.href = 'bbs.jsp'");
+		script.println("location.href = 'board_list.jsp'");
 		script.println("</script>");
 	}
 	Bbs bbs = new BbsDAO().getBbs(bbsID);
@@ -75,10 +75,18 @@
     <%	
     	}
     %>
+    <%
+	// request 내장객체에서 boardDTO get하여 클래스 변수에 저장()
+	String action = request.getParameter("action");
+	String groupId = request.getParameter("groupId");
+
+%>
   </div> 
  </nav>
  	<div class="container">
  		<div class="row">
+ 		<form method="post" action="re.jsp?bbsID=<%= bbsID%>">
+ 		<input type="hidden" name="action" value="<%= action %>">
  		<input type="hidden" name="groupId" value="<%= bbs.getGroupId() %>">
  			<table class = "table table-striped" style="text-align: center; border : 1px solid #dddddd">
  				<thead>
@@ -102,20 +110,22 @@
  					 <tr>
  						<td>내용</td>
  						<td colsapn="2" style="min-height: 200px; text-align:left;"><%= bbs.getBbsContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></td>
- 					</tr> 					
+ 					</tr> 				
  				</tbody>
  			</table>
  			
- 			<a href="board_list.jsp" class="btn btn-primary">목록</a>
+ 			<a href="hit.jsp?bbsID=<%= bbsID%>" class="btn btn-primary">목록</a>
  			<%
  				if(userID != null && userID.equals(bbs.getUserID())){
  			%>
  					<a href="update.jsp?bbsID=<%= bbsID%>" class="btn btn-primary">수정</a>
  					<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="deleteAction.jsp?bbsID=<%= bbsID%>" class="btn btn-primary">삭제</a>
- 					<a href="re.jsp?bbsID=<%= bbsID%>" class="btn btn-primary">댓글</a>
+ 					
  			<%
  				}
  			%>
+ 			<input type="submit" class="btn btn-primary pull-right" value="댓글">
+ 			</form>
  		</div>
  	</div>
  <!-- 애니매이션 담당 JQUERY -->

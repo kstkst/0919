@@ -77,10 +77,10 @@ public class BbsDAO {
 	 * @date 	2019-11-13
 	 *
 	 *
-	 * @remark	아이디 자동 +1	[2019-11-13; 최지은] \n
+	 * @remark	bbsID 값 자동 +1	[2019-11-13; 최지은] \n
 	 *
 	 */
-    public int getNext() {
+    public int getBoardNumber() {
     	String SQL = "SELECT bbsID FROM BBS ORDER BY bbsID DESC";
     	try {
     		PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -107,11 +107,11 @@ public class BbsDAO {
 	 * @remark	글작성	[2019-11-13; 최지은] \n
 	 *
 	 */
-    public int write(String bbsTitle, String userID, String bbsContent, String category, int groupId) {
-    	String SQL = "INSERT INTO BBS VALUE (?, ?, ?, ?, ?, ?, ?, ?)";
+    public int boardWrite(String bbsTitle, String userID, String bbsContent, String category, int groupId, int hit) {
+    	String SQL = "INSERT INTO BBS VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     	try {
     		PreparedStatement pstmt = conn.prepareStatement(SQL);
-    		pstmt.setInt(1, getNext());
+    		pstmt.setInt(1, getBoardNumber());
     		pstmt.setString(2, bbsTitle);
     		pstmt.setString(3, userID);
     		pstmt.setString(4, getDate());
@@ -119,6 +119,7 @@ public class BbsDAO {
     		pstmt.setInt(6, 1);
     		pstmt.setString(7, category);
     		pstmt.setInt(8, groupId);
+    		pstmt.setInt(9, 0);
     		return pstmt.executeUpdate();
     	} catch (Exception e) {
     		e.printStackTrace();
@@ -139,12 +140,12 @@ public class BbsDAO {
 	 * @remark	글 정보 호출	[2019-11-13; 최지은] \n
 	 *
 	 */
-    public ArrayList<Bbs> getList(int pageNumber){
-    	String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
+    public ArrayList<Bbs> getboardList(int pageNumber){
+    	String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1 ORDER BY groupId DESC, bbsID ASC LIMIT 10";
     	ArrayList<Bbs> list = new ArrayList<Bbs>();
     	try {
     		PreparedStatement pstmt = conn.prepareStatement(SQL);
-    		pstmt.setInt(1,  getNext() - (pageNumber - 1) * 10);
+    		pstmt.setInt(1,  getBoardNumber() - (pageNumber - 1) * 10);
     		rs = pstmt.executeQuery();
     		while (rs.next()) {
     			Bbs bbs =new Bbs();
@@ -156,6 +157,7 @@ public class BbsDAO {
     			bbs.setBbsAvailable(rs.getInt(6));
     			bbs.setCategory(rs.getString(7));
     			bbs.setGroupId(rs.getInt(8));
+    			bbs.setHit(rs.getInt(9));
     			list.add(bbs);
     		}
     	} catch (Exception e) {
@@ -176,11 +178,11 @@ public class BbsDAO {
 	 * @remark	글10개 이상 다음 페이지로 이동	[2019-11-13; 최지은] \n
 	 *
 	 */
-    public boolean nextPage(int pageNumber) {
+    public boolean nextBoardPage(int pageNumber) {
     	String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1 ";
     	try {
     		PreparedStatement pstmt = conn.prepareStatement(SQL);
-    		pstmt.setInt(1,  getNext() - (pageNumber - 1) * 10);
+    		pstmt.setInt(1,  getBoardNumber() - (pageNumber - 1) * 10);
     		rs = pstmt.executeQuery();
     		if (rs.next()) {
     			return true;
@@ -219,7 +221,8 @@ public class BbsDAO {
     			bbs.setBbsAvailable(rs.getInt(6));
     			bbs.setCategory(rs.getString(7));
     			bbs.setGroupId(rs.getInt(8));
-    			return bbs;
+    			bbs.setHit(rs.getInt(9));
+    			return bbs;   			
     		}
     	} catch (Exception e) {
     		e.printStackTrace();
@@ -239,7 +242,7 @@ public class BbsDAO {
 	 * @remark	글 1건 수정	[2019-11-13; 최지은] \n
 	 *
 	 */
-    public int update(int bbsID, String bbsTitle, String bbsContent) {
+    public int boardUpdate(int bbsID, String bbsTitle, String bbsContent) {
     	String SQL = "UPDATE BBS SET bbsTitle = ?, bbsContent = ? WHERE bbsID = ?";
     	try {
     		PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -250,7 +253,7 @@ public class BbsDAO {
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
-    	return -1; // DB 오류ㄴ
+    	return -1; // DB 오류
     }
     /**
 	 *
@@ -265,7 +268,7 @@ public class BbsDAO {
 	 * @remark	글 1건 삭제	[2019-11-13; 최지은] \n
 	 *
 	 */
-    public int delete(int bbsID) {
+    public int boardDelete(int bbsID) {
     	String SQL = "UPDATE BBS SET bbsAvailable = 0 WHERE bbsID = ?";
     	try {
     		PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -319,4 +322,16 @@ public class BbsDAO {
     	}
     	return newGroupId;
       }
+   
+    public int hitUpdate(int bbsID) {
+    	String SQL = "UPDATE BBS SET hit = hit + 1 WHERE bbsID = ?";
+    	try {
+    		PreparedStatement pstmt = conn.prepareStatement(SQL);
+    		pstmt.setInt(1, bbsID);
+    		return pstmt.executeUpdate();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    	return -1; // DB 오류
+    }
 }
