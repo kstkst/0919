@@ -161,11 +161,11 @@
  			<table class = "table table-striped" style="text-align: center; border : 1px solid #dddddd">
  				<thead>
  					<tr>
- 						<th width = "10%" style = "background-color :#eeeeee; text-align: center;">번호</th>
- 						<th width = "40%" style = "background-color :#eeeeee; text-align: center;">제목</th>
+ 						<th width = "8%" style = "background-color :#eeeeee; text-align: center;">번호</th>
+ 						<th width = "35%" style = "background-color :#eeeeee; text-align: center;">제목</th>
  						<th width = "20%" style = "background-color :#eeeeee; text-align: center;">작성자</th>
  						<th width = "30%" style = "background-color :#eeeeee; text-align: center;">작성일</th>
- 						<th width = "30%" style = "background-color :#eeeeee; text-align: center;">조회수</th>
+ 						<th width = "8%" style = "background-color :#eeeeee; text-align: center;">조회수</th>
  					</tr>
  				</thead>
  				<tbody>
