@@ -322,7 +322,19 @@ public class BbsDAO {
     	}
     	return newGroupId;
       }
-   
+    /**
+	 *
+	 * @fn 		hitUpdate()
+	 * 
+	 * @brief 	DAO
+	 *
+	 * @author 	최지은
+	 * @date 	2019-11-28
+	 *
+	 *
+	 * @remark	조회수 1씩 증가	[2019-11-28; 최지은] \n
+	 *
+	 */
     public int hitUpdate(int bbsID) {
     	String SQL = "UPDATE BBS SET hit = hit + 1 WHERE bbsID = ?";
     	try {
