@@ -26,7 +26,6 @@
 		} else {
 						BbsDAO bbsDAO = new BbsDAO(); //인스턴스생성
 	 					int result = bbsDAO.hitUpdate(bbsID);
-						System.out.println(bbs.getHit());
 						//회원가입실패
 						if(result == -1){
 							PrintWriter script = response.getWriter();
