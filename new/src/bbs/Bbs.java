@@ -10,6 +10,7 @@ public class Bbs {
 	private int bbsAvailable;
 	private String category;
 	private int groupId;
+	private int hit;
 	
 	public int getBbsID() {
 		return bbsID;
@@ -58,6 +59,12 @@ public class Bbs {
 	}
 	public void setGroupId(int groupId) {
 		this.groupId = groupId;
+	}
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
 	}
 	
 }

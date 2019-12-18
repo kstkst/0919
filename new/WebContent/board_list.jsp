@@ -157,31 +157,47 @@
 
 
 	<div class="container">
- 		<div clas="row">
+ 		<div class="row">
  			<table class = "table table-striped" style="text-align: center; border : 1px solid #dddddd">
  				<thead>
  					<tr>
- 						<th width = "10%" style = "background-color :#eeeeee; text-align: center;">번호</th>
- 						<th width = "50%" style = "background-color :#eeeeee; text-align: center;">제목</th>
+ 						<th width = "8%" style = "background-color :#eeeeee; text-align: center;">번호</th>
+ 						<th width = "35%" style = "background-color :#eeeeee; text-align: center;">제목</th>
  						<th width = "20%" style = "background-color :#eeeeee; text-align: center;">작성자</th>
  						<th width = "30%" style = "background-color :#eeeeee; text-align: center;">작성일</th>
+ 						<th width = "8%" style = "background-color :#eeeeee; text-align: center;">조회수</th>
  					</tr>
  				</thead>
  				<tbody>
+ 			
+ 				
  				<%
  					BbsDAO bbsDAO = new BbsDAO();
- 					ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
- 					for(int i=0; i < list.size(); i++){
+ 					ArrayList<Bbs> list = bbsDAO.getboardList(pageNumber);
+ 					for(int i=0; i < list.size(); i++){	 			
+ 						if((list.get(i).getCategory()).equals("notice")) {		
  				%>	
  					<tr>
- 						<td><%= list.get(i).getBbsID() %></td>
- 						<td><a href="view.jsp?bbsID=<%= list.get(i).getBbsID()%>"><%= list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></a></td>
+ 						<td><%= list.get(i).getGroupId()%></td>
+ 						<td><a href="view.jsp?bbsID=<%= list.get(i).getBbsID()%>"><%= list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></a></td>						
+ 						
+ 				<% 		
+ 						}else{
+ 				%>
+ 						<td></td>
+ 						<td>Re: <a href="view.jsp?bbsID=<%= list.get(i).getBbsID()%>"><%= list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></a></td>						
+ 						
+ 				<% 		
+ 						}
+ 				%>
  						<td><%= list.get(i).getUserID() %></td>
  						<td><%= list.get(i).getBbsDate().substring(0, 11) + list.get(i).getBbsDate().substring(11, 13) +  "시" + list.get(i).getBbsDate().substring(14, 16) + "분"%></td>
+ 						<td><%= list.get(i).getHit()%></td>
  					</tr>
- 				<% 					
+ 				<% 		
  					}
  				%>
+ 				
  				</tbody>
  			</table>
  			
@@ -190,7 +206,7 @@
 			%>
 			 	<a href="board_list.jsp?pageNumber=<%=pageNumber - 1%>"class="btn btn-success btn-arraw-left">이전</a>
 			<%				
- 				} if(bbsDAO.nextPage(pageNumber + 1)){
+ 				} if(bbsDAO.nextBoardPage(pageNumber + 1)){
  			%>
  				 <a href="board_list.jsp?pageNumber=<%=pageNumber + 1%>"class="btn btn-success btn-arraw-left">다음</a>
  			<%	 					
