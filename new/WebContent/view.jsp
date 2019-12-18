@@ -79,6 +79,7 @@
 	// request 내장객체에서 boardDTO get하여 클래스 변수에 저장()
 	String action = request.getParameter("action");
 	String groupId = request.getParameter("groupId");
+	String category = request.getParameter("category");
 
 %>
   </div> 
@@ -87,6 +88,7 @@
  		<div class="row">
  		<form method="post" action="re.jsp?bbsID=<%= bbsID%>">
  		<input type="hidden" name="action" value="<%= action %>">
+ 		<input type="hidden" name="category" value="<%= bbs.getCategory() %>">
  		<input type="hidden" name="groupId" value="<%= bbs.getGroupId() %>">
  			<table class = "table table-striped" style="text-align: center; border : 1px solid #dddddd">
  				<thead>
@@ -119,7 +121,7 @@
  				if(userID != null && userID.equals(bbs.getUserID())){
  			%>
  					<a href="update.jsp?bbsID=<%= bbsID%>" class="btn btn-primary">수정</a>
- 					<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="deleteAction.jsp?bbsID=<%= bbsID%>" class="btn btn-primary">삭제</a>
+ 					<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="deleteAction.jsp?bbsID=<%= bbsID%>&category=<%= bbs.getCategory() %>&groupId=<%= bbs.getGroupId() %>" class="btn btn-primary">삭제</a>
  					
  			<%
  				}

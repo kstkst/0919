@@ -262,22 +262,41 @@ public class BbsDAO {
 	 * @brief 	DAO
 	 *
 	 * @author 	최지은
-	 * @date 	2019-11-13
+	 * @date 	2019-12    -12
 	 *
 	 *
 	 * @remark	글 1건 삭제	[2019-11-13; 최지은] \n
 	 *
 	 */
-    public int boardDelete(int bbsID) {
-    	String SQL = "UPDATE BBS SET bbsAvailable = 0 WHERE bbsID = ?";
-    	try {
-    		PreparedStatement pstmt = conn.prepareStatement(SQL);
-    		pstmt.setInt(1, bbsID);
-    		return pstmt.executeUpdate();
+    public int boardDelete(String category, int bbsID, int groupId) {
+    	String SQL = "";
+		// 野껊슣�뻻疫뀐옙 占쎄텣占쎌젫
+		if(category.equals("notice")) {
+			SQL ="UPDATE BBS SET bbsAvailable = 0 where groupId=?";
+		// 占쎈솊疫뀐옙 占쎄텣占쎌젫
+		} else {
+			SQL ="UPDATE BBS SET bbsAvailable = 0 where bbsID=?";
+		}
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			// 野껊슣�뻻疫뀐옙 占쎄텣占쎌젫, GroupId嚥∽옙 野껊슣�뻻占쎈뮩�⑨옙 占쎈솊疫뀐옙 筌뤴뫀紐� 占쎄텣占쎌젫
+			if(category.equals("notice")) {
+				pstmt = conn.prepareStatement(SQL);
+				pstmt.setInt(1,groupId);
+			// 占쎈솊疫뀐옙 占쎄텣占쎌젫
+			} else {
+				pstmt = conn.prepareStatement(SQL);
+				pstmt.setInt(1,bbsID);
+			}
+						
+			//SQL�눧占� 占쎈뼄占쎈뻬
+			pstmt.executeUpdate();
+			
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
-    	return -1; // DB 오류
+    	return 1; // DB 오류
     }
     /**
 	 *

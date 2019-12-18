@@ -44,7 +44,10 @@
 			script.println("</script>");
 		} else {
 				BbsDAO bbsDAO = new BbsDAO(); //인스턴스생성
-				int result = bbsDAO.boardDelete(bbsID);					
+				int result = bbsDAO.boardDelete(bbs.getCategory(), bbsID, bbs.getGroupId());
+				System.out.println(bbs.getCategory());
+				System.out.println(bbsID);
+				System.out.println(bbs.getGroupId());
 				if(result == -1){
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
